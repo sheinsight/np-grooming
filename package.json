@@ -1,15 +1,17 @@
 {
-  "name": "@shined/tmp-base",
+  "name": "@shined/np-grooming",
   "version": "0.0.1",
-  "description": "This is a universal standard template.",
-  "homepage": "https://github.com/sheinsight/tpl-base",
+  "description": "Some grooming work before publishing npm in Github Action.",
+  "homepage": "https://github.com/sheinsight/np-grooming",
   "packageManager": "pnpm@7.30.1",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git@github.com:sheinsight/tpl-base.git"
   },
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
   "publishConfig": {
     "access": "public",
@@ -23,10 +25,16 @@
   "keywords": [],
   "author": "ityuany",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
+    "@types/semver": "^7.3.13",
     "@vitest/coverage-c8": "^0.29.7",
     "father": "^4.1.7",
+    "tsx": "^3.12.6",
     "vitest": "^0.29.7"
+  },
+  "dependencies": {
+    "cac": "^6.7.14",
+    "enquirer": "^2.3.6",
+    "semver": "^7.3.8"
   }
 }
