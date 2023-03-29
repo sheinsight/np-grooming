@@ -1,0 +1,32 @@
+{
+  "name": "@shined/tmp-base",
+  "version": "0.0.1",
+  "description": "This is a universal standard template.",
+  "homepage": "https://github.com/sheinsight/tpl-base",
+  "packageManager": "pnpm@7.30.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sheinsight/tpl-base.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "father build",
+    "test": "vitest",
+    "test:cov": "vitest run --coverage"
+  },
+  "keywords": [],
+  "author": "ityuany",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@vitest/coverage-c8": "^0.29.7",
+    "father": "^4.1.7",
+    "vitest": "^0.29.7"
+  }
+}
