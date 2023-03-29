@@ -1,17 +1,44 @@
 // write your code
 
 import { cac } from "cac";
-import semver from "semver";
-import path from "node:path";
-import fs from "node:fs/promises";
-import { dirname } from "./utils.js";
+import enquirer from "enquirer";
+import { ReleaseType } from "semver";
+import { VersionPromptAnswer, getChoices } from "./utils.js";
+import { readPackageUp } from "read-pkg-up";
+import { writePackageSync } from "write-pkg";
+import { $ } from "execa";
 
-const __dirname = dirname(import.meta.url);
+const normalizedReadResult = await readPackageUp();
 
-const cli = cac();
+if (!normalizedReadResult) {
+  console.error("No package.json found");
+  process.exit(1);
+}
 
-cli.command("[...a]", " bump version ").action(async () => {
-  console.log(path.join(__dirname));
-});
+const cli = cac("@shined/np-grooming");
 
-cli.parse();
+cli
+  .command("[cwd]", " bump version ")
+  .alias("bump")
+  .option("--prefix <prefix>", "Prefix for the version", { default: "v" })
+  .action(async (_, opt) => {
+    const { path, packageJson } = normalizedReadResult;
+    const choices = await getChoices(packageJson.version);
+    const res = await enquirer.prompt<VersionPromptAnswer>({
+      type: "autocomplete",
+      name: "version",
+      message: `Publish a new version of ${packageJson.name} (${packageJson.version})`,
+      choices,
+      result: (selected: ReleaseType) =>
+        choices.find((x) => x.name === selected)?.value!,
+    });
+
+    const tagV = `${opt.prefix}${res.version}`;
+    await $`git tag ${tagV}`;
+    if (!res.version.includes("snapshot")) {
+      packageJson.version = res.version;
+      writePackageSync(path, packageJson);
+    }
+  });
+
+cli.version(normalizedReadResult.packageJson.version).help().parse();
