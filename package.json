@@ -24,6 +24,10 @@
     "test:cov": "vitest run --coverage",
     "dev": "tsx ./src/index.ts"
   },
+  "engines": {
+    "node": ">=18.12.0",
+    "pnpm": ">=8.0.0"
+  },
   "keywords": [],
   "author": {
     "name": "ityuany"
