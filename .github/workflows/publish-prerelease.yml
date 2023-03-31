@@ -20,7 +20,7 @@ jobs:
       - name: Use Pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: ${{ vars.PNPM_7_VERSION }}
+          version: ${{ vars.PNPM_VERSION }}
 
       - name: Use Node.js
         uses: actions/setup-node@v3
