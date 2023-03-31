@@ -1,4 +1,4 @@
-# 📦 base-temple
+# 📦 @shined/np-grooming
 
 Since our release process is hosted on GitHub Actions, we aim to achieve agility for non-latest releases. To accomplish this, we have adopted the method of triggering GitHub Actions using tags.
 
@@ -19,6 +19,8 @@ npm install @shined/np-grooming -D
 ```sh
 npx @shined/np-grooming
 ```
+
+![](https://ityuany-assets.oss-cn-hangzhou.aliyuncs.com/uPic/j8gZOZ.png)
 
 ## 🫂 Maintainers
 
