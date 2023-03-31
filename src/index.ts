@@ -1,12 +1,12 @@
 // write your code
 
+import { $ } from "execa";
 import { cac } from "cac";
 import enquirer from "enquirer";
 import { ReleaseType } from "semver";
-import { VersionPromptAnswer, getChoices } from "./utils.js";
 import { readPackageUp } from "read-pkg-up";
 import { writePackageSync } from "write-pkg";
-import { $ } from "execa";
+import { VersionPromptAnswer, getChoices } from "./utils.js";
 
 const normalizedReadResult = await readPackageUp();
 
