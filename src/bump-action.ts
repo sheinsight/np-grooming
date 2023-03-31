@@ -28,7 +28,8 @@ export async function bumpAction(_: string, opt: PrefixOpt) {
     packageJson.version = answer.version;
     writePackageSync(path, packageJson);
     await $`git add .`;
-    await $`git commit -m "chore: bump version to ${answer.version}"`;
+    const message = `chore: bump version to ${answer.version}`;
+    await $`git commit -m '${message}'`;
   }
   await $`git tag ${tagV}`;
 }
