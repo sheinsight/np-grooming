@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "target": "ESNext",
+    "module": "Node16",
+    "isolatedModules": true,
+    "moduleResolution": "node16",
+    "allowSyntheticDefaultImports": true
+  }
+}
