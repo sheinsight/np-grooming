@@ -1,6 +1,7 @@
 import semver from "semver";
 import { $ } from "execa";
 import process from "node:process";
+import { readPackageUp } from "read-pkg-up";
 
 export interface VersionPromptAnswer {
   version: "snapshot" | string;
@@ -47,4 +48,15 @@ export async function getShortHashStr() {
     const hash = await $`git rev-parse --short=7 HEAD`;
     return hash.stdout.trim();
   }
+}
+
+export async function loadPackageJson() {
+  const normalizedReadResult = await readPackageUp();
+
+  if (!normalizedReadResult) {
+    console.error("No package.json found");
+    process.exit(1);
+  }
+
+  return normalizedReadResult;
 }

@@ -32,6 +32,15 @@ class Faker {
     });
     return this;
   };
+
+  readPackageUp = (res: object | undefined) => {
+    vi.doMock("read-pkg-up", () => {
+      return {
+        readPackageUp: () => res,
+      };
+    });
+    return this;
+  };
 }
 
 beforeEach(() => {
@@ -82,5 +91,16 @@ describe("getChoices", () => {
         expect(choice.value.startsWith("0.0.0-snapshot.")).toBe(true);
       }
     }
+  });
+});
+
+describe("loadPackageJson", () => {
+  it("should process killed when no package.json found", async () => {
+    const exit = vi.fn();
+    Faker.newInstance().readPackageUp(undefined).process(exit);
+    const { loadPackageJson } = await import("./utils.js");
+    expect(exit).not.toHaveBeenCalled();
+    await loadPackageJson();
+    expect(exit).toHaveBeenCalled();
   });
 });
