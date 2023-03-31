@@ -1,24 +1,26 @@
-# 📦 base-temple
+# 📦 @shined/np-grooming
 
-What is this?
+Since our release process is hosted on GitHub Actions, we aim to achieve agility for non-latest releases. To accomplish this, we have adopted the method of triggering GitHub Actions using tags.
 
-![](http://ityuany-assets.oss-cn-hangzhou.aliyuncs.com/uPic/Untitled-2023-01-06-1610.png)
+In order to ensure consistency between tags and versions in package.json, we have developed this handy toolkit.
 
 ## 🤔 why
 
-Why is it needed?
+![](http://ityuany-assets.oss-cn-hangzhou.aliyuncs.com/uPic/Untitled-2023-01-06-1610.png)
 
 ## 🔥 Install
 
-How to install
+```sh
+npm install @shined/np-grooming -D
+```
 
 ## 🦾 Usage
 
-Instructions for use
+```sh
+npx @shined/np-grooming
+```
 
-## 📚 Api
-
-api
+![](https://ityuany-assets.oss-cn-hangzhou.aliyuncs.com/uPic/j8gZOZ.png)
 
 ## 🫂 Maintainers
 
