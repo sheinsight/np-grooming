@@ -37,7 +37,7 @@ export async function getChoices(version: string) {
 
 export async function getShortHashStr() {
   const list = await $`git status --porcelain`;
-  if (list.stdout.trim() === "") {
+  if (list.stdout.trim() !== "") {
     console.error("You have uncommitted changes");
     process.exit(1);
   } else {
