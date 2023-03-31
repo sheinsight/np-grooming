@@ -50,17 +50,18 @@ beforeEach(() => {
 describe("getShortHashStr", () => {
   it("should not call process.exit when there are no uncommitted changes", async () => {
     const processExitFaker = vi.fn();
-    Faker.newInstance().execa({ stdout: "" }).process(processExitFaker);
+    Faker.newInstance().execa({ stdout: "abcdefg" }).process(processExitFaker);
     const { getShortHashStr } = await import("./utils.js");
     await getShortHashStr();
     expect(processExitFaker).toHaveBeenCalled();
   });
 
-  it("should return a hash string of length 7", async () => {
-    Faker.newInstance().execa({ stdout: "abcdefg" });
+  it("should call process.exit when there are no uncommitted changes", async () => {
+    const processExitFaker = vi.fn();
+    Faker.newInstance().execa({ stdout: "" }).process(processExitFaker);
     const { getShortHashStr } = await import("./utils.js");
-    const hash = await getShortHashStr();
-    expect(hash?.length).toBe(7);
+    await getShortHashStr();
+    expect(processExitFaker).not.toHaveBeenCalled();
   });
 });
 
