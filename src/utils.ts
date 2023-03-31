@@ -20,8 +20,7 @@ export async function getChoices(version: string) {
         name: <const>"snapshot",
         value: `0.0.0-snapshot.${hashStr}`,
         hint: `
-              ( TODO: 未实现 )
-              snapshot版本不会变更本地版本，仅仅只是打 Git Tag
+              The snapshot version will not change the local version, it is just a Git Tag.
           `,
       };
     } else {
