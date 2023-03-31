@@ -24,9 +24,11 @@ export async function bumpAction(_: string, opt: PrefixOpt) {
     result: (selected) => transformAnswer(choices, selected),
   });
   const tagV = `${opt.prefix}${answer.version}`;
-  await $`git tag ${tagV}`;
   if (!answer.version.includes("snapshot")) {
     packageJson.version = answer.version;
     writePackageSync(path, packageJson);
+    await $`git add .`;
+    await $`git commit -m "chore: bump version to ${answer.version}"`;
   }
+  await $`git tag ${tagV}`;
 }
