@@ -3,10 +3,6 @@ import { $ } from "execa";
 import process from "node:process";
 import { readPackageUp } from "read-pkg-up";
 
-export interface VersionPromptAnswer {
-  version: "snapshot" | string;
-}
-
 export async function getChoices(version: string) {
   const hashStr = await getShortHashStr();
   return (<const>[

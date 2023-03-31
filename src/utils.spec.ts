@@ -1,5 +1,5 @@
 import { it, vi, expect, beforeEach, describe } from "vitest";
-import semver, { ReleaseType } from "semver";
+import semver from "semver";
 
 class Faker {
   static #fakeClient?: Faker;
@@ -70,7 +70,7 @@ describe("getChoices", () => {
     const { getChoices } = await import("./utils.js");
     const version = "1.0.0";
     const choices = await getChoices(version);
-    const releaseTypes: ReleaseType[] = [
+    const releaseTypes = <const>[
       "major",
       "minor",
       "patch",
@@ -78,17 +78,18 @@ describe("getChoices", () => {
       "preminor",
       "prepatch",
       "prerelease",
+      "snapshot",
     ];
-    expect(choices.length).toBe(releaseTypes.length + 1); // 8 choices (including snapshot)
-    for (const [i, choice] of choices.entries()) {
-      if (i < releaseTypes.length) {
-        const newVersion = semver.inc(version, releaseTypes[i], "beta");
-        expect(choice.value).toBe(newVersion);
-        expect(choice.hint).toBe(`(${newVersion})`);
-      } else {
+    expect(choices.length).toBe(releaseTypes.length); // 8 choices (including snapshot)
+    for (const [_, choice] of choices.entries()) {
+      if (choice.name === "snapshot") {
         const isSnapshot = choice.name === "snapshot";
         expect(isSnapshot).toBe(true);
         expect(choice.value.startsWith("0.0.0-snapshot.")).toBe(true);
+      } else {
+        const newVersion = semver.inc(version, choice.name, "beta");
+        expect(choice.value).toBe(newVersion);
+        expect(choice.hint).toBe(`(${newVersion})`);
       }
     }
   });
