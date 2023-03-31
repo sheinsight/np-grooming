@@ -56,3 +56,10 @@ export async function loadPackageJson() {
 
   return normalizedReadResult;
 }
+
+export function transformAnswer<T extends { [name: string]: string }>(
+  choices: T[],
+  selected: string
+) {
+  return choices.find((x) => x.name === selected)?.value!;
+}

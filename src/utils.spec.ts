@@ -105,3 +105,54 @@ describe("loadPackageJson", () => {
     expect(exit).toHaveBeenCalled();
   });
 });
+
+describe("transformAnswer", () => {
+  it("should return correct answer", async () => {
+    const { transformAnswer } = await import("./utils.js");
+    const choices = [
+      {
+        name: "major",
+        value: "2.0.0",
+        hint: "(2.0.0)",
+      },
+      {
+        name: "minor",
+        value: "1.1.0",
+        hint: "(1.1.0)",
+      },
+      {
+        name: "patch",
+        value: "1.0.1",
+        hint: "(1.0.1)",
+      },
+      {
+        name: "premajor",
+        value: "2.0.0-beta.0",
+        hint: "(2.0.0-beta.0)",
+      },
+      {
+        name: "preminor",
+        value: "1.1.0-beta.0",
+        hint: "(1.1.0-beta.0)",
+      },
+      {
+        name: "prepatch",
+        value: "1.0.1-beta.0",
+        hint: "(1.0.1-beta.0)",
+      },
+      {
+        name: "prerelease",
+        value: "1.0.0-beta.0",
+        hint: "(1.0.0-beta.0)",
+      },
+      {
+        name: "snapshot",
+        value: "0.0.0-snapshot.abcdefg",
+        hint: "",
+      },
+    ];
+    const answer = "patch";
+    const result = transformAnswer(choices, answer);
+    expect(result).toBe("1.0.1");
+  });
+});
