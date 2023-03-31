@@ -1,4 +1,4 @@
-import semver, { ReleaseType } from "semver";
+import semver from "semver";
 import { $ } from "execa";
 import process from "node:process";
 
