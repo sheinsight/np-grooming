@@ -1,6 +1,6 @@
 {
   "name": "@shined/np-grooming",
-  "version": "0.0.1-beta.1",
+  "version": "1.0.0",
   "description": "Some grooming work before publishing npm in Github Action.",
   "homepage": "https://github.com/sheinsight/np-grooming",
   "packageManager": "pnpm@8.0.0",
@@ -53,5 +53,5 @@
     "url": "https://github.com/sheinsight/tpl-base/issues"
   },
   "readme": "ERROR: No README data found!",
-  "_id": "@shined/np-grooming@0.0.1-beta.0"
+  "_id": "@shined/np-grooming@0.0.1-beta.1"
 }
