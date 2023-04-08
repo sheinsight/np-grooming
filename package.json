@@ -27,8 +27,7 @@
     "dev": "tsx ./src/index.ts"
   },
   "engines": {
-    "node": ">=16.13.0",
-    "pnpm": ">=8.0.0"
+    "node": ">=16.13.0"
   },
   "keywords": [],
   "author": {
